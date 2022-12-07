@@ -17,7 +17,7 @@ This repo provides wallet builders a pre-made class with all required wallet fun
 - Change `window.aptos` to be `window.<your-wallet-name>`
   - Make sure the `Window Interface` has `<your-wallet-name>` as a key (instead of `aptos`)
 - Open `__tests/index.test.tsx` and change `AptosWallet` to `<Your-Wallet-Name>Wallet`
-- Run tests with `pnpm test` - all tests should pass
+- Run tests with `npm run test` - all tests should pass
 
 At this point, you have a ready wallet class with all required properties and functions to integrate with the Aptos Wallet Adapter.
 

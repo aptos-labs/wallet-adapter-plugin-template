@@ -15,7 +15,7 @@ import { Types } from "aptos";
 
 // CHANGE AptosWindow
 interface AptosWindow extends Window {
-  aptos?: PluginProvider;
+  aptos?: PluginProvider; // CHANGE aptos key
 }
 
 declare const window: AptosWindow; // CHANGE AptosWindow
