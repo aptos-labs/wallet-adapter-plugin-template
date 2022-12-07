@@ -1,13 +1,15 @@
-# A wallet adapter package for Wallet Builders
+# Aptos wallet plugin template for wallet builders to interact with the Aptos Wallet Adapter
 
-This package provides wallet builders a pre-made class with all required wallet functionality following the [wallet standard](https://aptos.dev/guides/wallet-standard) for easy and fast development.
+This repo provides wallet builders a pre-made class with all required wallet functionality following the [wallet standard](https://aptos.dev/guides/wallet-standard) for easy and fast development to interact with the [Aptos Wallet Adapter](https://github.com/aptos-labs/aptos-wallet-adapter)
+
+---
 
 ### Usage
 
-- Clone this repo
+- `git clone git@github.com:aptos-labs/wallet-adapter-plugin-template.git`
 - run `npm install` or `yarn install`
 - Open `src/index.ts`
-- Change all AptosWindow appereances to `<Your-Wallet-Name>Window`
+- Change all `AptosWindow` appereances to `<Your-Wallet-Name>Window`
 - Change `AptosWalletName` to be `<Your-Wallet-Name>WalletName`
 - Change `url` to match your website url
 - Change `icon` to your wallet icon (pay attention to the required format)
@@ -17,7 +19,7 @@ This package provides wallet builders a pre-made class with all required wallet 
 - Open `__tests/index.test.tsx` and change `AptosWallet` to `<Your-Wallet-Name>Wallet`
 - Run tests with `pnpm test` - all tests should pass
 
-At this point, you have a ready wallet class with all required props and functions to integrate with the Aptos Wallet Adapter.
+At this point, you have a ready wallet class with all required properties and functions to integrate with the Aptos Wallet Adapter.
 
 ### Publish as a Package
 
@@ -28,6 +30,8 @@ https://docs.npmjs.com/creating-and-publishing-scoped-public-packages
 
 Creating and publishing unscoped public packages
 https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages
+
+---
 
 > **_Note:_** if your wallet provides function that is not included, you should open a PR against [aptos-wallet-adapter](https://github.com/aptos-labs/aptos-wallet-adapter) in the [core package](https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/packages/wallet-adapter-core/src/WalletCore.ts) so it would support this functionality.
 > You can take a look at the `signTransaction` on the wallet [core package](https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/packages/wallet-adapter-core/src/WalletCore.ts)
