@@ -33,7 +33,7 @@ https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages
 
 ### Add your name to the wallets list
 
-Once the package is published, you can create a PR against the [wallet-adapter-react](https://github.com/aptos-labs/aptos-wallet-adapter/tree/main/packages/wallet-adapter-react) package and add your wallet name as a url to the npm package to the [supported wallet list](https://github.com/aptos-labs/aptos-wallet-adapter/tree/main/packages/wallet-adapter-react#supported-wallet-packages) on the README file.
+Once the package is published, you can create a PR against the [aptos-wallet-adapter](https://github.com/aptos-labs/aptos-wallet-adapter) repo and add your wallet name as a url to the npm package to the [supported wallet list](https://github.com/aptos-labs/aptos-wallet-adapter#supported-wallet-packages) on the README file.
 
 ---
 
