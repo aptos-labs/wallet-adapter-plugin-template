@@ -26,5 +26,17 @@
     "@types/jest": "^29.2.3",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontem-network/plugin-wallet-adapter.git"
+  },
+  "keywords": [
+    "aptos",
+    "wallet"
+  ],
+  "bugs": {
+    "url": "https://github.com/pontem-network/plugin-wallet-adapter/issues"
+  },
+  "homepage": "https://github.com/pontem-network/plugin-wallet-adapter#readme"
 }
