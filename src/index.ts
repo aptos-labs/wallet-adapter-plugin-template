@@ -22,7 +22,7 @@ const PontemNetworkNameMapping = {
 type PonetmNetworkNames = keyof typeof PontemNetworkNameMapping;
 
 interface PontemPluginProvider extends Omit<PluginProvider, 'network' | 'onNetworkChange'> {
-  network: () => Promise<{ name: PonetmNetworkNames } | NetworkName>;
+  network: () => Promise<{ name: PonetmNetworkNames, chainId?: string, api?: string } | NetworkName>;
   onNetworkChange: (listener: (
     newNetwork: { networkName?: NetworkInfo, name?: PonetmNetworkNames, chainId?: string; api?: string }
   ) => Promise<void>) => Promise<void>;
@@ -107,12 +107,16 @@ export class PontemWallet implements AdapterPlugin {
     }
   }
 
-  async network(): Promise<NetworkName> {
+  async network(): Promise<{ name: NetworkName, chainId?: string, api?: string } | NetworkName> {
     try {
       const response = await this.provider?.network();
       if (!response) throw `${PontemWalletName} Network Error`;
       if (typeof response === 'object' && response?.name) {
-        return PontemNetworkNameMapping[response.name];
+        return {
+          name: PontemNetworkNameMapping[response.name],
+          chainId: response?.chainId ?? undefined,
+          api: response?.api ?? undefined
+        };
       }
       return response as NetworkName;
     } catch (error: any) {
@@ -127,14 +131,14 @@ export class PontemWallet implements AdapterPlugin {
       ): Promise<void> => {
         if (newNetwork?.name) {
           callback({
-            networkName: PontemNetworkNameMapping[newNetwork.name],
+            name: PontemNetworkNameMapping[newNetwork.name],
             chainId: newNetwork?.chainId ?? undefined,
             api: newNetwork?.api ?? undefined,
           });
         }
         if (newNetwork?.networkName) {
           callback({
-            networkName: newNetwork.networkName,
+            name: newNetwork.networkName,
             chainId: undefined,
             api: undefined,
           });
