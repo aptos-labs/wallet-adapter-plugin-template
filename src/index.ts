@@ -24,8 +24,9 @@ type PonetmNetworkNames = keyof typeof PontemNetworkNameMapping;
 interface PontemPluginProvider extends Omit<PluginProvider, 'network' | 'onNetworkChange'> {
   network: () => Promise<{ name: PonetmNetworkNames } | NetworkName>;
   onNetworkChange: (listener: (
-    network: { networkName: PonetmNetworkNames, chainId: string; api: string } | { networkName: NetworkInfo }
+    newNetwork: { networkName?: NetworkInfo, name?: PonetmNetworkNames, chainId?: string; api?: string }
   ) => Promise<void>) => Promise<void>;
+  publicKey?: () => Promise<string>;
 }
 
 declare const window: PontemWindow;
@@ -55,7 +56,11 @@ export class PontemWallet implements AdapterPlugin {
   async account(): Promise<AccountInfo> {
     const response = await this.provider?.account();
     if (!response) throw `${PontemWalletName} Account Error`;
-    return response;
+    let publicKey = '';
+    if (this.provider?.publicKey) {
+      publicKey = await this.provider?.publicKey();
+    }
+    return { ...response, publicKey };
   }
 
   async disconnect(): Promise<void> {
@@ -106,10 +111,10 @@ export class PontemWallet implements AdapterPlugin {
     try {
       const response = await this.provider?.network();
       if (!response) throw `${PontemWalletName} Network Error`;
-      if (typeof response === 'object') {
+      if (typeof response === 'object' && response?.name) {
         return PontemNetworkNameMapping[response.name];
       }
-      return response;
+      return response as NetworkName;
     } catch (error: any) {
       throw error;
     }
@@ -117,20 +122,23 @@ export class PontemWallet implements AdapterPlugin {
 
   async onNetworkChange(callback: any): Promise<void> {
     try {
-      const handleNetworkChange = async (newNetwork: { name: PonetmNetworkNames, chainId: string; api: string } | { networkName: NetworkInfo }): Promise<void> => {
-        if (newNetwork.hasOwnProperty('networkName') && (newNetwork.networkName ?? networkName) {
+      const handleNetworkChange = async (
+        newNetwork: { networkName?: NetworkInfo, name?: PonetmNetworkNames, chainId?: string; api?: string }
+      ): Promise<void> => {
+        if (newNetwork?.name) {
+          callback({
+            networkName: PontemNetworkNameMapping[newNetwork.name],
+            chainId: newNetwork?.chainId ?? undefined,
+            api: newNetwork?.api ?? undefined,
+          });
+        }
+        if (newNetwork?.networkName) {
           callback({
             networkName: newNetwork.networkName,
             chainId: undefined,
             api: undefined,
           });
         }
-        callback({
-          networkName: newNetwork.name,
-          chainId: newNetwork.chainId,
-          api: newNetwork.api,
-        });
-
       };
       await this.provider?.onNetworkChange(handleNetworkChange);
     } catch (error: any) {
