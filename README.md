@@ -6,7 +6,7 @@ This repo provides wallet builders a pre-made class with all required wallet fun
 
 ### Usage
 
-- `git clone git@github.com:aptos-labs/wallet-adapter-plugin-template.git`
+- `fork` this repo
 - run `npm install` or `yarn install`
 - Open `src/index.ts`
 - Change all `AptosWindow` appereances to `<Your-Wallet-Name>Window`
