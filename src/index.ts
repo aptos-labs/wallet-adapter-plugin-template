@@ -27,6 +27,9 @@ interface PontemPluginProvider extends Omit<PluginProvider, 'network' | 'onNetwo
     newNetwork: { networkName?: NetworkInfo, name?: PonetmNetworkNames, chainId?: string; api?: string }
   ) => Promise<void>) => Promise<void>;
   publicKey?: () => Promise<string>;
+  signAndSubmit?: (transaction: any, options?: any) => Promise<{
+    hash: Types.HexEncodedBytes;
+  } | AptosWalletErrorResult>;
 }
 
 declare const window: PontemWindow;
@@ -76,7 +79,10 @@ export class PontemWallet implements AdapterPlugin {
     options?: any
   ): Promise<{ hash: Types.HexEncodedBytes }> {
     try {
-      const response = await this.provider?.signAndSubmitTransaction(
+      if (!this.provider?.signAndSubmit) {
+        throw `${PontemWalletName} Sign and Submit failed`;
+      }
+      const response = await this.provider?.signAndSubmit(
         transaction,
         options
       );
