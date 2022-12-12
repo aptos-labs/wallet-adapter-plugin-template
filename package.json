@@ -1,6 +1,6 @@
 {
   "name": "@pontem/wallet-adapter-plugin",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Pontem plugin to use with Aptos Wallet Adapter",
   "author": "Pontem Network",
   "main": "./dist/index.js",
@@ -17,7 +17,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aptos-labs/wallet-adapter-core": "*",
+    "@aptos-labs/wallet-adapter-core": "^0.1.7",
     "aptos": "^1.4.0"
   },
   "devDependencies": {
