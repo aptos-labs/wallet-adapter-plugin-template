@@ -26,6 +26,8 @@ At this point, you have a ready wallet class with all required properties and fu
 Next step is to publish your wallet as a npm package so dapps can install it as a dependency.
 
 - Make sure to update `package.json` name, description, author and any other properties.
+- Run `npm install` then `npm run build` - a `dist` folder should be available
+- (optional) Run `npm publish --dry-run` to see what would get published (make sure there is a `dist` folder)
 
 Creating and publishing scoped public packages
 https://docs.npmjs.com/creating-and-publishing-scoped-public-packages
