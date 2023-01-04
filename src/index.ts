@@ -15,7 +15,7 @@ import { Types } from "aptos";
 
 // CHANGE AptosWindow
 interface AptosWindow extends Window {
-  aptos?: PluginProvider; // CHANGE aptos key
+  aptos?: PluginProvider; // CHANGE aptos key (should be the same as the wallet's name prop)
 }
 
 declare const window: AptosWindow; // CHANGE AptosWindow
