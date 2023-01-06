@@ -15,7 +15,12 @@ This repo provides wallet builders a pre-made class with all required wallet fun
 - Change `icon` to your wallet icon (pay attention to the required format)
 
 - Change `window.aptos` to be `window.<your-wallet-name>`
-  - Make sure the `Window Interface` has `<your-wallet-name>` as a key (instead of `aptos`)
+
+> **_NOTE:_** Ensure the `name` prop is the same as the `window.<name>`. The adapter will look for the matching name when detecting a wallet. For example, if your wallet's name prop is `Petra`, then the window should be `window.petra`.
+
+> **_NOTE2_** window object key (i.e `window.<name>`) has to be lowercase exact match (`petra`). Wallet name prop can have capitalization (`Petra` / `PetraWallet`)
+
+- Make sure the `Window Interface` has `<your-wallet-name>` as a key (instead of `aptos`)
 - Open `__tests/index.test.tsx` and change `AptosWallet` to `<Your-Wallet-Name>Wallet`
 - Run tests with `npm run test` - all tests should pass
 
