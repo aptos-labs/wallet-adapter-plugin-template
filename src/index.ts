@@ -15,7 +15,7 @@ import { Types } from "aptos";
 
 // CHANGE AptosWindow
 interface AptosWindow extends Window {
-  aptos?: PluginProvider; // CHANGE aptos key (should be the same as the wallet's name prop)
+  aptos?: PluginProvider; // CHANGE aptos key (has to be lowercase exact match and same as the wallet's name prop)
 }
 
 declare const window: AptosWindow; // CHANGE AptosWindow
@@ -24,7 +24,7 @@ export const AptosWalletName = "Aptos" as WalletName<"Aptos">; // CHANGE AptosWa
 
 // CHANGE AptosWallet
 export class AptosWallet implements AdapterPlugin {
-  readonly name = AptosWalletName; // CHANGE AptosWalletName
+  readonly name = AptosWalletName; // CHANGE AptosWalletName (can have capitalization)
   readonly url = // CHANGE url value
     "https://chrome.google.com/webstore/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci";
   readonly icon = // CHANGE icon value
