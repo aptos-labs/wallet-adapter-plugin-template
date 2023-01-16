@@ -1,8 +1,8 @@
 {
-  "name": "wallet-adapter-plugin-msafe",
+  "name": "msafe-plugin-wallet-adapter",
   "version": "0.1.0",
-  "description": "Petra plugin to use with Aptos Wallet Adapter",
-  "author": "Petra Aptos",
+  "description": "MSafe plugin to use with Aptos Wallet Adapter",
+  "author": "LeviHHH",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
