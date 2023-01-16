@@ -60,7 +60,9 @@ export class MSafeWalletAdapter implements AdapterPlugin {
   }
 
   get url() {
-    return MSafeWallet.getAppUrl(this._origin instanceof Array ? this._origin[0] : this._origin);
+    const defaultOrigin = this._origin instanceof Array ? this._origin[0] : this._origin;
+    if (typeof window === 'undefined' || typeof window.location === 'undefined' || typeof window.location.href === 'undefined') return MSafeWallet.getOrigin(defaultOrigin);
+    return MSafeWallet.getAppUrl(defaultOrigin);
   }
 
   async connect(): Promise<AccountInfo> {
