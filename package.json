@@ -1,8 +1,8 @@
 {
-  "name": "wallet-adapter-plugin-template",
+  "name": "aptos-adapter",
   "version": "0.1.0",
-  "description": "Petra plugin to use with Aptos Wallet Adapter",
-  "author": "Petra Aptos",
+  "description": "Kana plugin to use with Aptos Wallet Adapter",
+  "author": "Kana Aptos",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
