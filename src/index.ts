@@ -2,6 +2,7 @@ import {
   AptosWalletErrorResult,
   NetworkName,
   PluginProvider,
+  TransactionPayload,
 } from "@aptos-labs/wallet-adapter-core";
 import type {
   AccountInfo,
@@ -64,7 +65,7 @@ export class AptosWallet implements AdapterPlugin {
   }
 
   async signAndSubmitTransaction(
-    transaction: Types.TransactionPayload,
+    transaction: TransactionPayload,
     options?: any
   ): Promise<{ hash: Types.HexEncodedBytes }> {
     try {
