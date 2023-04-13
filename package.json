@@ -1,5 +1,5 @@
 {
-  "name": "kanalabs/aptos-wallet-adapter",
+  "name": "@kanalabs/aptos-wallet-adapter",
   "version": "1.0.0",
   "description": "Kana plugin to use with Aptos Wallet Adapter",
   "author": "Kana Aptos",
