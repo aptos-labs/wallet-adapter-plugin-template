@@ -11,7 +11,7 @@ import type {
   SignMessageResponse,
   WalletName,
 } from "@aptos-labs/wallet-adapter-core";
-import { Types } from "aptos";
+import { TxnBuilderTypes, Types } from "aptos";
 
 // CHANGE AptosWindow
 interface AptosWindow extends Window {
@@ -65,6 +65,25 @@ export class AptosWallet implements AdapterPlugin {
 
   async signAndSubmitTransaction(
     transaction: Types.TransactionPayload,
+    options?: any
+  ): Promise<{ hash: Types.HexEncodedBytes }> {
+    try {
+      const response = await this.provider?.signAndSubmitTransaction(
+        transaction,
+        options
+      );
+      if ((response as AptosWalletErrorResult).code) {
+        throw new Error((response as AptosWalletErrorResult).message);
+      }
+      return response as { hash: Types.HexEncodedBytes };
+    } catch (error: any) {
+      const errMsg = error.message;
+      throw errMsg;
+    }
+  }
+
+  async signAndSubmitBCSTransaction(
+    transaction: TxnBuilderTypes.TransactionPayload,
     options?: any
   ): Promise<{ hash: Types.HexEncodedBytes }> {
     try {
