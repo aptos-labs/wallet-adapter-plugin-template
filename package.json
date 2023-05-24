@@ -1,8 +1,8 @@
 {
   "name": "wallet-adapter-plugin-template",
   "version": "0.1.0",
-  "description": "Petra plugin to use with Aptos Wallet Adapter",
-  "author": "Petra Aptos",
+  "description": "Adapter template plugin to use with Aptos Wallet Adapter",
+  "author": "Aptos",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -17,8 +17,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aptos-labs/wallet-adapter-core": "2.0.1",
-    "aptos": "^1.4.0"
+    "@aptos-labs/wallet-adapter-core": "2.2.0",
+    "aptos": "^1.9.1"
   },
   "devDependencies": {
     "@types/jest": "^29.2.3",
