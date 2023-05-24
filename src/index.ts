@@ -36,6 +36,18 @@ export class AptosWallet implements AdapterPlugin {
 
   // readonly providerName = "aptosWallet";
 
+  /**
+   * An optional property for wallets that supports mobile app.
+   * By providing the `deeplinkProvider` prop, the adapter will redirect the user
+   * from a mobile web browser to the wallet's mobile app on `connect`.
+   *
+   * `url` param is given by the provider and represents the current website url the user is on.
+   */
+
+  // deeplinkProvider(data: { url: string }): string {
+  //   return `aptos://explore?url=${data.url}`;
+  // }
+
   provider: PluginProvider | undefined =
     typeof window !== "undefined" ? window.aptos : undefined; // CHANGE window.aptos
 
