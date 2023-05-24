@@ -1,6 +1,6 @@
 # Aptos wallet plugin template for wallet builders to interact with the Aptos Wallet Adapter
 
-This repo provides wallet builders a pre-made class with all required wallet functionality following the [wallet standard](https://aptos.dev/guides/wallet-standard) for easy and fast development to interact with the [Aptos Wallet Adapter](https://github.com/aptos-labs/aptos-wallet-adapter)
+This repo provides wallet builders a pre-made class with all required wallet functionality following the [wallet standard](https://aptos.dev/standards/wallets) for easy and fast development to interact with the [Aptos Wallet Adapter](https://github.com/aptos-labs/aptos-wallet-adapter)
 
 ---
 
