@@ -143,11 +143,11 @@ export class AptosWallet implements AdapterPlugin {
 
   async onNetworkChange(callback: any): Promise<void> {
     try {
-      const handleNetworkChange = async (newNetwork: {
-        networkName: NetworkInfo;
-      }): Promise<void> => {
+      const handleNetworkChange = async (
+        networkName: NetworkInfo
+      ): Promise<void> => {
         callback({
-          name: newNetwork.networkName,
+          name: networkName,
           chainId: undefined,
           api: undefined,
         });
