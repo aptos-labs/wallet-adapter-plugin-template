@@ -1,3 +1,5 @@
+> **_NOTE:_** Following [AIP-62 new wallet standard](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md), wallets are expected to not implement this wallet plugin but to implement the new wallet standard support by following this [integration guide](https://aptos.dev/integration/wallet-adapter-for-wallets/#aip-62-wallet-standard)
+
 # Aptos wallet plugin template for wallet builders to interact with the Aptos Wallet Adapter
 
 This repo provides wallet builders a pre-made class with all required wallet functionality following the [wallet standard](https://aptos.dev/standards/wallets) for easy and fast development to interact with the [Aptos Wallet Adapter](https://github.com/aptos-labs/aptos-wallet-adapter)
