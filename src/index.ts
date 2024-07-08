@@ -10,43 +10,101 @@ import {
 } from "@aptos-labs/wallet-adapter-core";
 import { TxnBuilderTypes, Types } from "aptos";
 
-// CHANGE AptosWindow
+/**
+ * WARNING - This template is for legacy Wallet plugins. 
+ * This is NOT the recommended way to implement a Wallet Adapter plugin currently.
+ * 
+ * Instead, please follow the instructions here for implementing an AIP-62 compliant wallet:
+ * https://aptos.dev/en/build/sdks/wallet-adapter/wallets
+ * 
+ * AIP-62 compliant wallets are backwards compatible with this legacy template.
+ */
+
+/**
+ * Sections of the code which need to be revised will be marked with a "REVISION" comment.
+ * We recommend using the REVISION comments like a checklist and deleting them as you go.
+ * Ex. REVISION - Update this section.
+ * 
+ * Function implementations are for DEMONSTRATION PURPOSES ONLY. Please ensure you rewrite all features
+ * to use your Wallet as the method of communicating on-chain.
+ */
+
+// REVISION - Rename AptosWindow to <Your Wallet Name>Window. Ex. "PetraWindow"
+// Ensure that you update all references to AptosWindow with the new name.
 interface AptosWindow extends Window {
-  aptos?: PluginProvider; // CHANGE aptos key (has to be lowercase exact match and same as the wallet's name prop)
+  // REVISION - Rename "aptos" to your wallet name in all lowercase. Ex. "petra"
+  // This must match your wallet's name property.
+  // Ensure that you update all references to `AptosWindow.aptos` with the new name.
+  aptos?: PluginProvider; 
 }
 
-declare const window: AptosWindow; // CHANGE AptosWindow
+/**
+ * A window containing a DOM document; the document property points to the DOM document loaded in that window.
+ * We have extended it to include the plugin provider you implement with the required features.
+ */
+declare const window: AptosWindow;
 
-export const AptosWalletName = "Aptos" as WalletName<"Aptos">; // CHANGE AptosWalletName, CHANGE "Aptos"
+/**
+ * REVISION - 
+ * 1. Change the name of the variable to match your wallet (Ex. AptosWalletName -> PetraWalletName)
+ * 2. Update the value to match your Wallet's name (Ex. "Aptos" -> "Petra" and WalletName<"Aptos"> -> WalletName<"Petra">)
+ */
+export const AptosWalletName = "Aptos" as WalletName<"Aptos">;
 
-// CHANGE AptosWallet
+// REVISION AptosWallet
 export class AptosWallet implements AdapterPlugin {
-  readonly name = AptosWalletName; // CHANGE AptosWalletName (can have capitalization)
-  readonly url = ""; // CHANGE url value to your chrome store or other URL
-  readonly icon = // CHANGE icon value
-    "data:image/png;base64,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";
+  // REVISION - Change the variable to your renamed "AptosWalletName" variable. (Ex. "PetraWalletName")
+  readonly name = AptosWalletName; 
 
-  // An optional property for wallets which may have different wallet name with window property name.
-  // such as window.aptosWallet and wallet name is Aptos.
-  // If your wallet name prop is different than the window property name use the window property name here and comment out line 37
-
-  // readonly providerName = "aptosWallet";
+  // REVISION - Include the link to create an account using your wallet or your primary website. 
+  // (Ex. https://chromewebstore.google.com/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci?hl=en)
+  readonly url = "";
 
   /**
-   * An optional property for wallets that supports mobile app.
+   * REVISION - Set the icon to be a base64 encoding of your Wallet's logo.
+   * 
+   * The icon data must be of the format:
+   * 1. "data:image/"
+   * 2. The icon's file extension, which must be one of:
+   *    - "svg+xml"
+   *    - "webp"
+   *    - "png"
+   *    - "gif"
+   * 3. ";base64,"
+   * 4. The base64 encoding of the image file.
+   * 
+   * See the current value of icon for an example of this format.
+   */ 
+  readonly icon = "";
+
+  // REVISION - Optionally set providerName to be the actual property name for "AptosWindow.aptos" if it is different than your AptosWalletName. 
+  // Ex. If your WalletName was "AptosWallet", but your property on "AptosWindow" was still ".aptos", you could set providerName to "aptos".
+  // readonly providerName = "aptos";
+
+  /**
+   * REVISION - deepLinkProvider is an optional property for wallets that supports mobile app.
    * By providing the `deeplinkProvider` prop, the adapter will redirect the user
    * from a mobile web browser to the wallet's mobile app on `connect`.
    *
    * `url` param is given by the provider and represents the current website url the user is on.
    */
-
   // deeplinkProvider(data: { url: string }): string {
   //   return `aptos://explore?url=${data.url}`;
   // }
 
+  // REVISION - Ensure you update `window.aptos` to be the renamed property name. (Ex. window.petra)
   provider: PluginProvider | undefined =
-    typeof window !== "undefined" ? window.aptos : undefined; // CHANGE window.aptos
+    typeof window !== "undefined" ? window.aptos : undefined;
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * Connect an account using this Wallet. 
+   * This must wait for the user to sign in to the Wallet provider and confirm they are ok sharing
+   * details with the dapp.
+   * 
+   * @returns Whether the user approved connecting their account, and account info.
+   * @throws Error when unable to connect to the Wallet provider.
+   */
   async connect(): Promise<AccountInfo> {
     try {
       const accountInfo = await this.provider?.connect();
@@ -57,12 +115,24 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * Look up the account info for the currently connected wallet address on the chosen network. 
+   * 
+   * @returns Return account info.
+   */
   async account(): Promise<AccountInfo> {
     const response = await this.provider?.account();
     if (!response) throw `${AptosWalletName} Account Error`;
     return response;
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * Remove the permission of the Wallet class to access the account that was connected.
+   * 
+   * @returns Resolves when done cleaning up.
+   */
   async disconnect(): Promise<void> {
     try {
       await this.provider?.disconnect();
@@ -71,6 +141,14 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * @param transaction - A transaction that the user should have the ability to sign if they choose to.
+   * @param options - Additional options for signing the transaction.
+   * @returns The result of whether the user chose to sign the transaction or not.
+   * @throws Error when unable to sign and submit the transaction.
+   */
   async signAndSubmitTransaction(
     transaction: Types.TransactionPayload,
     options?: any
@@ -90,6 +168,14 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * @param transaction - A BCS transaction that the user should have the ability to sign if they choose to.
+   * @param options - Additional options for signing the BCS transaction.
+   * @returns The result of whether the user chose to sign the BCS transaction or not.
+   * @throws Error when unable to sign and submit the BCS transaction.
+   */
   async signAndSubmitBCSTransaction(
     transaction: TxnBuilderTypes.TransactionPayload,
     options?: any
@@ -109,6 +195,13 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * @param message - A message to sign with the private key of the connected account.
+   * @returns A user response either with a signed message, or the user rejecting to sign.
+   * @throws Error when unable to sign the message.
+   */
   async signMessage(message: SignMessagePayload): Promise<SignMessageResponse> {
     try {
       if (typeof message !== "object" || !message.nonce) {
@@ -126,6 +219,13 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * Return the name, chainId, and url of the network connection your wallet is using to connect to the Aptos chain.
+   * 
+   * @returns Which network the connected Wallet is pointing to.
+   */
   async network(): Promise<NetworkInfo> {
     try {
       const response = await this.provider?.network();
@@ -138,6 +238,14 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * When users indicate a Network change should occur, update your Wallet accordingly.
+   * 
+   * @returns when the logic is resolved.
+   * @throws Error when unable to handle network change.
+   */
   async onNetworkChange(callback: any): Promise<void> {
     try {
       const handleNetworkChange = async (
@@ -156,6 +264,14 @@ export class AptosWallet implements AdapterPlugin {
     }
   }
 
+  /**
+   * REVISION - Implement this function using your Wallet. 
+   * 
+   * An event which will be triggered anytime an Account changes.
+   * 
+   * @returns when the logic is resolved.
+   * @throws Error when unable to handle account change.
+   */
   async onAccountChange(callback: any): Promise<void> {
     try {
       const handleAccountChange = async (
