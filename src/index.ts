@@ -16,8 +16,6 @@ import { TxnBuilderTypes, Types } from "aptos";
  * 
  * Instead, please follow the instructions here for implementing an AIP-62 compliant wallet:
  * https://aptos.dev/en/build/sdks/wallet-adapter/wallets
- * 
- * AIP-62 compliant wallets are backwards compatible with this legacy template.
  */
 
 /**
@@ -78,8 +76,8 @@ export class AptosWallet implements AdapterPlugin {
   readonly icon = "";
 
   // REVISION - Optionally set providerName to be the actual property name for "AptosWindow.aptos" if it is different than your AptosWalletName. 
-  // Ex. If your WalletName was "AptosWallet", but your property on "AptosWindow" was still ".aptos", you could set providerName to "aptos".
-  // readonly providerName = "aptos";
+  // Ex. If your WalletName was "AptosWallet", but your property on "AptosWindow" was ".yourproperty", you could set providerName to "yourproperty".
+  // readonly providerName = "yourproperty";
 
   /**
    * REVISION - deepLinkProvider is an optional property for wallets that supports mobile app.
